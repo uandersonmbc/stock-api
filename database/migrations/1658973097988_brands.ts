@@ -1,17 +1,16 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema';
 
-export default class UsersSchema extends BaseSchema {
-  protected tableName = 'users';
+export default class extends BaseSchema {
+  protected tableName = 'brands';
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary().defaultTo(this.raw('uuid_generate_v4()'));
       table.string('name').notNullable();
-      table.string('email', 255).notNullable();
-      table.string('password', 180).notNullable();
+      table.string('slug').notNullable();
 
-      table.timestamp('created_at', { useTz: true }).notNullable();
-      table.timestamp('updated_at', { useTz: true }).notNullable();
+      table.timestamp('created_at', { useTz: true });
+      table.timestamp('updated_at', { useTz: true });
     });
   }
 
